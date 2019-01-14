@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/.vs
+/src/MMH.App/bin
+/src/packages
+/src/MMH.Service/obj/Debug
+/src/MMH.Repository/obj/Debug
+/src/MMH.Model/obj/Debug
+/src/MMH.Data/obj/Debug
+/src/MMH.App/obj/Debug
