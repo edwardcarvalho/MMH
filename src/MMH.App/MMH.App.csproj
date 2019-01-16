@@ -267,6 +267,16 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMH.Data\MMH.Data.csproj">
+      <Project>{71922137-a883-4e7d-b671-5e4fc852a855}</Project>
+      <Name>MMH.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMH.Model\MMH.Model.csproj">
+      <Project>{32E32630-CF20-40F7-AD0A-01B4B7BCCC58}</Project>
+      <Name>MMH.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

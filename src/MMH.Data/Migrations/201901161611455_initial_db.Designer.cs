@@ -7,13 +7,13 @@ namespace MMH.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial_UserInfo : IMigrationMetadata
+    public sealed partial class initial_db : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial_UserInfo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial_db));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901141559156_Initial_UserInfo"; }
+            get { return "201901161611455_initial_db"; }
         }
         
         string IMigrationMetadata.Source

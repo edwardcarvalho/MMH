@@ -10,3 +10,7 @@
 /src/MMH.Model/obj/Debug
 /src/MMH.Data/obj/Debug
 /src/MMH.App/obj/Debug
+/src/MMH.Data/bin/Debug
+/src/MMH.Model/bin/Debug
+/src/MMH.Repository/bin/Debug
+/src/MMH.Service/bin/Debug

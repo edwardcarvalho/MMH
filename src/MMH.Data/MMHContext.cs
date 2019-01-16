@@ -4,13 +4,14 @@ namespace MMH.Data
     using MMH.Model.Models;
     using System.Data.Entity.ModelConfiguration.Conventions;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using MMH.App.Models;
 
-    public partial class MMHContext : IdentityDbContext<ApplicationUser>
+    public class MMHContext : IdentityDbContext<Advertiser>
     {
         public MMHContext()
             : base("name=MMH")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<MMHContext, MMH.Data.Migrations.Configuration>());
+            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<Address> Addresses { get; set; }
@@ -25,6 +26,7 @@ namespace MMH.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Advertiser>().HasKey(c => c.Id);
             modelBuilder.Entity<Advertiser>().ToTable("Advertiser");
@@ -34,7 +36,11 @@ namespace MMH.Data
             modelBuilder.Entity<IdentityUserClaim>().ToTable("AspNetUserClaims");
             modelBuilder.Entity<IdentityRole>().ToTable("AspNetRole");
 
-            base.OnModelCreating(modelBuilder);
+        }
+
+        public static MMHContext Create()
+        {
+            return new MMHContext();
         }
     }
 }

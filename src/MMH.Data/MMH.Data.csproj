@@ -56,9 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201901141559156_Initial_UserInfo.cs" />
-    <Compile Include="Migrations\201901141559156_Initial_UserInfo.Designer.cs">
-      <DependentUpon>201901141559156_Initial_UserInfo.cs</DependentUpon>
+    <Compile Include="Migrations\201901161611455_initial_db.cs" />
+    <Compile Include="Migrations\201901161611455_initial_db.Designer.cs">
+      <DependentUpon>201901161611455_initial_db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMHContext.cs" />
@@ -69,18 +69,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MMH.App\MMH.App.csproj">
-      <Project>{4C70B9FC-367C-4F7A-BF17-288D37EDE314}</Project>
-      <Name>MMH.App</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MMH.Model\MMH.Model.csproj">
       <Project>{32E32630-CF20-40F7-AD0A-01B4B7BCCC58}</Project>
       <Name>MMH.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901141559156_Initial_UserInfo.resx">
-      <DependentUpon>201901141559156_Initial_UserInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901161611455_initial_db.resx">
+      <DependentUpon>201901161611455_initial_db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

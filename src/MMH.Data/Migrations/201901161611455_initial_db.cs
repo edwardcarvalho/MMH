@@ -3,7 +3,7 @@ namespace MMH.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial_UserInfo : DbMigration
+    public partial class initial_db : DbMigration
     {
         public override void Up()
         {
@@ -54,7 +54,7 @@ namespace MMH.Data.Migrations
                         Number = c.String(),
                     })
                 .PrimaryKey(t => t.DocumentId)
-                .ForeignKey("dbo.DocumentType", t => t.DocumentTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.DocumentType", t => t.DocumentTypeId, cascadeDelete: false)
                 .Index(t => t.DocumentTypeId);
             
             CreateTable(
@@ -95,7 +95,6 @@ namespace MMH.Data.Migrations
                         LockoutEnabled = c.Boolean(nullable: false),
                         AccessFailedCount = c.Int(nullable: false),
                         UserName = c.String(nullable: false, maxLength: 256),
-                        Discriminator = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
@@ -149,7 +148,7 @@ namespace MMH.Data.Migrations
                         IdentityUser_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRole", t => t.RoleId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.IdentityUser_Id)
                 .Index(t => t.RoleId)
                 .Index(t => t.IdentityUser_Id);
@@ -168,7 +167,7 @@ namespace MMH.Data.Migrations
                 .Index(t => t.PictureId);
             
             CreateTable(
-                "dbo.AspNetRoles",
+                "dbo.AspNetRole",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
@@ -205,7 +204,7 @@ namespace MMH.Data.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "IdentityUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "IdentityUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "IdentityUser_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRole");
             DropForeignKey("dbo.Picture", "PictureId", "dbo.DonnationAd");
             DropForeignKey("dbo.Phone", "Id", "dbo.Advertiser");
             DropForeignKey("dbo.DonnationAd", "Id", "dbo.Advertiser");
@@ -216,7 +215,7 @@ namespace MMH.Data.Migrations
             DropIndex("dbo.Advertiser", new[] { "AddressId" });
             DropIndex("dbo.Advertiser", new[] { "DocumentId" });
             DropIndex("dbo.Advertiser", new[] { "Id" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetRole", "RoleNameIndex");
             DropIndex("dbo.Picture", new[] { "PictureId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "IdentityUser_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
@@ -230,7 +229,7 @@ namespace MMH.Data.Migrations
             DropIndex("dbo.Address", new[] { "StateId" });
             DropIndex("dbo.Address", new[] { "CityId" });
             DropTable("dbo.Advertiser");
-            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetRole");
             DropTable("dbo.Picture");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.Phone");
