@@ -56,9 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201901161611455_initial_db.cs" />
-    <Compile Include="Migrations\201901161611455_initial_db.Designer.cs">
-      <DependentUpon>201901161611455_initial_db.cs</DependentUpon>
+    <Compile Include="Migrations\201901171804064_initial_db.cs" />
+    <Compile Include="Migrations\201901171804064_initial_db.Designer.cs">
+      <DependentUpon>201901171804064_initial_db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MMHContext.cs" />
@@ -75,8 +75,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901161611455_initial_db.resx">
-      <DependentUpon>201901161611455_initial_db.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901171804064_initial_db.resx">
+      <DependentUpon>201901171804064_initial_db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

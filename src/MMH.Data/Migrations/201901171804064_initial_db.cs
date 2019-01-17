@@ -46,6 +46,15 @@ namespace MMH.Data.Migrations
                 .PrimaryKey(t => t.StateId);
             
             CreateTable(
+                "dbo.Brand",
+                c => new
+                    {
+                        BrandId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.BrandId);
+            
+            CreateTable(
                 "dbo.Document",
                 c => new
                     {
@@ -73,10 +82,16 @@ namespace MMH.Data.Migrations
                         DonnationAdId = c.Long(nullable: false, identity: true),
                         Title = c.String(),
                         Description = c.String(),
+                        GroupId = c.Int(nullable: false),
+                        SubGroupId = c.Int(nullable: false),
                         Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.DonnationAdId)
                 .ForeignKey("dbo.Advertiser", t => t.Id)
+                .ForeignKey("dbo.Group", t => t.GroupId, cascadeDelete: false)
+                .ForeignKey("dbo.SubGroup", t => t.SubGroupId, cascadeDelete: false)
+                .Index(t => t.GroupId)
+                .Index(t => t.SubGroupId)
                 .Index(t => t.Id);
             
             CreateTable(
@@ -154,6 +169,44 @@ namespace MMH.Data.Migrations
                 .Index(t => t.IdentityUser_Id);
             
             CreateTable(
+                "dbo.Group",
+                c => new
+                    {
+                        GroupId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.GroupId);
+            
+            CreateTable(
+                "dbo.SubGroup",
+                c => new
+                    {
+                        SubGroupId = c.Int(nullable: false),
+                        Name = c.String(),
+                        BrandId = c.Int(nullable: false),
+                        ProductId = c.Int(nullable: false),
+                        GroupId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.SubGroupId)
+                .ForeignKey("dbo.Brand", t => t.BrandId, cascadeDelete: false)
+                .ForeignKey("dbo.Group", t => t.SubGroupId)
+                .ForeignKey("dbo.Product", t => t.ProductId, cascadeDelete: false)
+                .Index(t => t.SubGroupId)
+                .Index(t => t.BrandId)
+                .Index(t => t.ProductId);
+            
+            CreateTable(
+                "dbo.Product",
+                c => new
+                    {
+                        ProductId = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Description = c.String(),
+                        Status = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ProductId);
+            
+            CreateTable(
                 "dbo.Picture",
                 c => new
                     {
@@ -205,7 +258,12 @@ namespace MMH.Data.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "IdentityUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "IdentityUser_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRole");
+            DropForeignKey("dbo.DonnationAd", "SubGroupId", "dbo.SubGroup");
             DropForeignKey("dbo.Picture", "PictureId", "dbo.DonnationAd");
+            DropForeignKey("dbo.DonnationAd", "GroupId", "dbo.Group");
+            DropForeignKey("dbo.SubGroup", "ProductId", "dbo.Product");
+            DropForeignKey("dbo.SubGroup", "SubGroupId", "dbo.Group");
+            DropForeignKey("dbo.SubGroup", "BrandId", "dbo.Brand");
             DropForeignKey("dbo.Phone", "Id", "dbo.Advertiser");
             DropForeignKey("dbo.DonnationAd", "Id", "dbo.Advertiser");
             DropForeignKey("dbo.Document", "DocumentTypeId", "dbo.DocumentType");
@@ -217,6 +275,9 @@ namespace MMH.Data.Migrations
             DropIndex("dbo.Advertiser", new[] { "Id" });
             DropIndex("dbo.AspNetRole", "RoleNameIndex");
             DropIndex("dbo.Picture", new[] { "PictureId" });
+            DropIndex("dbo.SubGroup", new[] { "ProductId" });
+            DropIndex("dbo.SubGroup", new[] { "BrandId" });
+            DropIndex("dbo.SubGroup", new[] { "SubGroupId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "IdentityUser_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.Phone", new[] { "Id" });
@@ -224,6 +285,8 @@ namespace MMH.Data.Migrations
             DropIndex("dbo.AspNetUserClaims", new[] { "IdentityUser_Id" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.DonnationAd", new[] { "Id" });
+            DropIndex("dbo.DonnationAd", new[] { "SubGroupId" });
+            DropIndex("dbo.DonnationAd", new[] { "GroupId" });
             DropIndex("dbo.Document", new[] { "DocumentTypeId" });
             DropIndex("dbo.City", new[] { "StateId" });
             DropIndex("dbo.Address", new[] { "StateId" });
@@ -231,6 +294,9 @@ namespace MMH.Data.Migrations
             DropTable("dbo.Advertiser");
             DropTable("dbo.AspNetRole");
             DropTable("dbo.Picture");
+            DropTable("dbo.Product");
+            DropTable("dbo.SubGroup");
+            DropTable("dbo.Group");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.Phone");
             DropTable("dbo.AspNetUserLogins");
@@ -239,6 +305,7 @@ namespace MMH.Data.Migrations
             DropTable("dbo.DonnationAd");
             DropTable("dbo.DocumentType");
             DropTable("dbo.Document");
+            DropTable("dbo.Brand");
             DropTable("dbo.State");
             DropTable("dbo.City");
             DropTable("dbo.Address");

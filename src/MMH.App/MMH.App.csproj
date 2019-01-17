@@ -187,9 +187,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -275,6 +274,14 @@
     <ProjectReference Include="..\MMH.Model\MMH.Model.csproj">
       <Project>{32E32630-CF20-40F7-AD0A-01B4B7BCCC58}</Project>
       <Name>MMH.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMH.Repository\MMH.Repository.csproj">
+      <Project>{91CCC0E9-66A5-405E-9DDF-70110C3A845E}</Project>
+      <Name>MMH.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MMH.Service\MMH.Service.csproj">
+      <Project>{D858B8F3-1693-4B64-8AEB-F8D2C2F4C40C}</Project>
+      <Name>MMH.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

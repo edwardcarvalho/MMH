@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceDonnationAd\DonnationAdService.cs" />
+    <Compile Include="ServiceDonnationAd\IDonnationAdService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MMH.Model\MMH.Model.csproj">
+      <Project>{32E32630-CF20-40F7-AD0A-01B4B7BCCC58}</Project>
+      <Name>MMH.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

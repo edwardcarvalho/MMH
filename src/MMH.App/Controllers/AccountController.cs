@@ -1,16 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using MMH.App.Models;
-using MMH.Data;
+using MMH.App.ViewModels;
 using MMH.Model.Models;
+using MMH.Service.ServiceDonnationAd;
 
 namespace MMH.App.Controllers
 {
@@ -19,11 +16,13 @@ namespace MMH.App.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IDonnationAdService _donnationAdService;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IDonnationAdService donnationAdService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _donnationAdService = donnationAdService;
         }
 
         // GET: /Account/Login
@@ -49,6 +48,7 @@ namespace MMH.App.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: true);
+
             switch (result)
             {
                 case SignInStatus.Success:

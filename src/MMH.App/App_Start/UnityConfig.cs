@@ -1,15 +1,13 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using MMH.App.Controllers;
-using MMH.App.Models;
 using MMH.Data;
 using MMH.Model.Models;
+using MMH.Repository.RepositoryDonnationAd;
+using MMH.Service.ServiceDonnationAd;
 using System;
-using System.Data.Entity;
 using System.Web;
 using Unity;
-using Unity.AspNet.Mvc;
 using Unity.Injection;
 using Unity.Lifetime;
 
@@ -61,6 +59,8 @@ namespace MMH.App
                 new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
             container.RegisterType<IUserStore<Advertiser>, UserStore<Advertiser>>(
                 new InjectionConstructor(MMHContext.Create()));
+            container.RegisterType<IDonnationAdRepository, DonnationAdRepository>();
+            container.RegisterType<IDonnationAdService, DonnationAdService>();
         }
 
         public static IUnityContainer GetConfiguredContainer()

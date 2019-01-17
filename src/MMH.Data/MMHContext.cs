@@ -22,6 +22,9 @@ namespace MMH.Data
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Picture> Pictures { get; set; }
         public DbSet<State> States { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<SubGroup> SubGroups { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

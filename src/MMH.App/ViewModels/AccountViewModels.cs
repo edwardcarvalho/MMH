@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MMH.App.Models
+namespace MMH.App.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

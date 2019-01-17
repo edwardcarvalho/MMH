@@ -13,7 +13,7 @@ namespace MMH.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201901161611455_initial_db"; }
+            get { return "201901171804064_initial_db"; }
         }
         
         string IMigrationMetadata.Source

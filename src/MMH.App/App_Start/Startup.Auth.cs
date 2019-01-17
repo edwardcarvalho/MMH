@@ -3,13 +3,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using MMH.App.Models;
 using System.Web.Mvc;
 using MMH.Data;
-using System.Data.Entity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using MMH.Model.Models;
 
 namespace MMH.App

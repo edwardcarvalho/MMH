@@ -55,19 +55,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\DocumentType.cs" />
     <Compile Include="Models\DonnationAd.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Picture.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\Advertiser.cs" />
+    <Compile Include="Models\SubGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Enums\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
